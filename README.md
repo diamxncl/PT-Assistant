@@ -3,7 +3,8 @@
 ![img1](https://cdn.discordapp.com/attachments/800450151969456200/1180575178548322345/image.png?ex=657deb50&is=656b7650&hm=8d617448a89314e9e8d553cb56f6aef379b4563318f4c5728fd8c5288d5978c5&)
 
 This program will make configuration prompts for you.
-Soported protocols:
+
+Supported protocols:
   - SSH
   - DHCPv4 on Router
   - HSRP
