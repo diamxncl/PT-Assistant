@@ -245,7 +245,7 @@ void configTRUNK() {
     cout << "switchport mode trunk" << endl;
     cout << "switchport trunk allowed vlan ";
     for (int i = 0; i < vlanQty; i++) {
-        cout << vlan[i] << ", ";
+        cout << vlan[i] << ",";
     }
     
     if (nativeVlan != "1") {
