@@ -1,6 +1,6 @@
 # Packet Tracer Assistant
 
-![img1](https://cdn.discordapp.com/attachments/800450151969456200/1180575178548322345/image.png?ex=657deb50&is=656b7650&hm=8d617448a89314e9e8d553cb56f6aef379b4563318f4c5728fd8c5288d5978c5&)
+![img1](https://cdn.discordapp.com/attachments/800450151969456200/1180610735806623754/image.png?ex=657e0c6e&is=656b976e&hm=3373cf635545a5406d9c095ccfb5121169ec050ab2bc73ce0449ee15ac4985d5&)
 
 This program will make configuration prompts for you.
 
