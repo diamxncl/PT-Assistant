@@ -30,7 +30,7 @@ void configSSH() {
 
     if (optDef != "s") {
         banner();
-        cout << "Versión SSH\n> "; cin >> optSsh;
+        cout << "Versión SSH (1/2)\n> "; cin >> optSsh;
 
         if (optSsh == 2) {
             sshVer2 = true;
@@ -69,7 +69,7 @@ void configSSH() {
 void configDHCP() {
     //! Declaración de varibles
     int poolQty;
-    string pools[20], networkID[20], dns;
+    string pools[20], networkID[20], dns, domainNameDHCP;
 
     //! Entrada de datos
     cout << "¿Cúantas pools necesita?\n> "; cin >> poolQty;
@@ -77,10 +77,13 @@ void configDHCP() {
 
     for (int i = 0; i < poolQty; i++) {
         cout << "ID Pool " << i + 1 << "\n> "; cin >> pools[i];
-        cout << "ID de red (192.168.0)\n> "; cin >> networkID[i];
+        cout << "ID de red (ej: 192.168.0)\n> "; cin >> networkID[i];
+        cout << endl;
     }
 
-    cout << endl << "Servidor DNS\n> "; cin >> dns;
+    cout << "Servidor DNS (no = 0)\n> "; cin >> dns;
+    cout << endl;
+    cout << "Domain name (no = 0)\n> "; cin >> domainNameDHCP;
 
     //! Salida de datos
     banner();
@@ -91,7 +94,12 @@ void configDHCP() {
         cout << "ip dhcp pool " << pools[i] << endl;
         cout << "network " << networkID[i] << ".0 255.255.255.0" << endl;
         cout << "default-router " << networkID[i] << ".1" << endl;
-        cout << "dns-server " << dns << endl;
+        if (dns != "0") {
+            cout << "dns-server " << dns << endl;
+        }
+        if (domainNameDHCP != "0") {
+            cout << "domain-name " << domainNameDHCP << endl; 
+        }
         cout << "exit" << endl;
     }
 
@@ -106,12 +114,11 @@ void configHSRP() {
 
     //! Entrada de datos
     cout << "¿Cúantos grupos necesita?\n> "; cin >> groupQty;
-    cout << endl;
 
     for (int i = 0; i < groupQty; i++) {
         cout << "\nGrupo " << i + 1 << endl;
         cout << "ID grupo\n> "; cin >> HSRP[i][1];
-        cout << "ID red\n> "; cin >> HSRP[i][2];
+        cout << "ID red (ej: 192.168.0)\n> "; cin >> HSRP[i][2];
     }
     
     //! Salida de datos
@@ -149,7 +156,7 @@ void configOSPF(int acNetworks) {
 
     //! Entrada de datos
     for (int i = 0; i < acNetworks; i++) {
-        cout << "Red " << i + 1 << " (10.0.0.0 0.0.0.3)\n> ";
+        cout << "Red " << i + 1 << " (ej: 10.0.0.0 0.0.0.3)\n> ";
         cin >> ospfNetworks[i][0];
         cin >> ospfNetworks[i][1];
         cout << endl;
@@ -174,7 +181,7 @@ void configRIP(int acNetworks) {
     //! Entrada de datos
 
     for (int i = 0; i < acNetworks; i++) {
-        cout << "Red " << i + 1 << " (10.0.0.0)\n> ";
+        cout << "Red " << i + 1 << " (ej: 10.0.0.0)\n> ";
         cin >> ripNetworks[i];
         cout << endl;
     }
@@ -199,7 +206,7 @@ void configTRUNK() {
     bool l3switch = false;
 
     //! Entrada de datos
-    cout << "¿Switch capa 3? (s/n)\n> "; cin >> opcSwitch;
+    cout << "¿Switch multicapa? (s/n)\n> "; cin >> opcSwitch;
     cout << endl;
 
     if (opcSwitch == "s" || opcSwitch == "S") {
@@ -212,7 +219,7 @@ void configTRUNK() {
     
     cout << endl;
     for (int i = 0; i < vlanQty; i++) {
-        cout << "Vlan " << i + 1 << "\n> ";
+        cout << "ID Vlan " << i + 1 << "\n> ";
         cin >> vlan[i];
         cout << endl;
     }
@@ -318,9 +325,12 @@ int main() {
             configTRUNK();
         break;
 
-        default:
+        case 6:
         system("clear");
         return 0;
+
+        default:
+        break;
     }
 
     cout << "¿Desea continuar? (s/n)\n> "; cin >> temp;
