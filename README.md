@@ -11,6 +11,7 @@ Supported protocols:
   - OSPF
   - RIP
   - Trunk Config
+  - Router dot1Q
 
 ## How to build
 
