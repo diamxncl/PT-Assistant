@@ -260,6 +260,47 @@ void configTRUNK() {
 
 }
 
+void configSubInt() {
+    int interfaceQty;
+    string interfaz, native;
+    cout << "¿Interfaz?\n> "; cin >> interfaz;
+    cout << endl;
+    cout << "¿Cúantas subinterfaces quiere?\n> "; cin >> interfaceQty;
+    cout << endl;
+    cout << "ID Vlan nativa (no = 0)\n> "; cin >> native;
+    cout << endl;
+
+    string vlanInt[interfaceQty];
+
+    //! Entrada de datos
+
+    for (int i = 0; i < interfaceQty; i++) {
+        cout << "ID Vlan subinterfaz " << i + 1 << "\n> ";
+        cin >> vlanInt[i];
+    }
+
+    //! Salida de datos
+
+    banner();
+    cout << "- - - Configuración Subinterfaces - - -" << endl << endl;
+    cout << "interface " << interfaz << endl;
+    cout << "no shutdown" << endl;
+    cout << "exit" << endl;
+    for (int i = 0; i < interfaceQty; i++) {
+        cout << "interface " << interfaz << "." << vlanInt[i] << endl;
+        if (vlanInt[i] == native) {
+            cout << "encapsulation dot1q " << vlanInt[i] << " native" << endl;
+        }
+        else {
+            cout << "encapsulation dot1q " << vlanInt[i] << endl;
+        }
+        cout << "ip address 192.168." << vlanInt[i] << ".1 255.255.255.0" << endl;
+        cout << "no shutdown" << endl;
+        cout << "exit" << endl;
+    }
+    cout << endl;
+}
+
 int main() {
 
     //! Declaración de variables global.
@@ -276,7 +317,8 @@ int main() {
     cout << "3. HSRP" << endl;
     cout << "4. Enrutamiento" << endl;
     cout << "5. Configuración troncales" << endl;
-    cout << endl << "6. Salir" << endl;
+    cout << "6. Subinterfaces rúter" << endl;
+    cout << endl << "7. Salir" << endl;
     cout << endl << "> ";
 
     cin >> opcion;
@@ -326,6 +368,10 @@ int main() {
         break;
 
         case 6:
+            configSubInt();
+        break;
+
+        case 7:
         system("clear");
         return 0;
 
