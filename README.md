@@ -31,9 +31,9 @@ First update your linux:
   ```bash
   sudo apt update
   ```
-Then install the program: 
+Then install the following programs: 
   ```bash
-  sudo apt install g++
+  sudo apt install g++ figlet
   ```
 
 To compile the file with g++, do:
