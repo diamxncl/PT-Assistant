@@ -4,16 +4,18 @@
 
 using namespace std;
 
-void banner() {
+void banner(string indice) {
     system("clear");
     system("figlet Packet Tracer");
     system("figlet - Assistant -");
     cout << "                                              Hecho por: Álvaro Salas Robledillo";
     cout << endl;
+    cout << indice << endl << endl;
 }
 
 void configSSH() {
     //! Declaración de varibles
+    string indice = "Configuración SSH";
     string hostname, domainName, cifrate, userName, secret, optDef;
     bool sshVer2 = false; 
     int optSsh;
@@ -25,11 +27,13 @@ void configSSH() {
     userName = "cisco";
     secret = "Cisco1234";
 
+    banner(indice);
+
     cout << endl << "¿Desea utilizar una configuración estándar? (s/n)\n> "; cin >> optDef;
     cout << endl;
 
     if (optDef != "s") {
-        banner();
+        banner(indice);
         cout << "Versión SSH (1/2)\n> "; cin >> optSsh;
 
         if (optSsh == 2) {
@@ -49,7 +53,7 @@ void configSSH() {
 
     //! Salida de datos
     
-    banner();
+    banner(indice);
     cout << "- - - Configuración SSH - - -" << endl << endl;
     cout << "hostname " << hostname << endl;
     cout << "ip domain-name " << domainName << endl;
@@ -63,15 +67,22 @@ void configSSH() {
     if (sshVer2 == true)
         cout << "ip ssh version 2" << endl;
         cout << endl;
-    
+
+    string next;
+
+    cout << "Continuar... (s/n)\n> "; cin >> next;
+    cout << endl;
+
 }
 
 void configDHCP() {
     //! Declaración de varibles
+    string indice = "Configuración DHCP";
     int poolQty;
     string pools[20], networkID[20], dns, domainNameDHCP;
 
     //! Entrada de datos
+    banner(indice);
     cout << "¿Cúantas pools necesita?\n> "; cin >> poolQty;
     cout << endl;
 
@@ -86,7 +97,7 @@ void configDHCP() {
     cout << "Domain name (no = 0)\n> "; cin >> domainNameDHCP;
 
     //! Salida de datos
-    banner();
+    banner(indice);
 
     cout << "- - - Configuración DHCPv4 - - -" << endl << endl;
     for (int i = 0; i < poolQty; i++) {
@@ -105,14 +116,21 @@ void configDHCP() {
 
     cout << endl;
 
+    string next;
+
+    cout << "Continuar... (s/n)\n> "; cin >> next;
+    cout << endl;
+
 }
 
 void configHSRP() {
     //! Declaración de varibles
+    string indice = "Configuración HSRP";
     int groupQty;
     string HSRP[10][3]; //! INTERFACES | GRUPOS | IDRED
 
     //! Entrada de datos
+    banner(indice);
     cout << "¿Cúantos grupos necesita?\n> "; cin >> groupQty;
 
     for (int i = 0; i < groupQty; i++) {
@@ -122,7 +140,7 @@ void configHSRP() {
     }
     
     //! Salida de datos
-    banner();
+    banner(indice);
 
     for (int i = 0; i < groupQty; i++) {
         for (int j = 0; j < 2; j++) {
@@ -148,13 +166,20 @@ void configHSRP() {
         }
     }
 
+    string next;
+
+    cout << "Continuar... (s/n)\n> "; cin >> next;
+    cout << endl;
+
 }
 
 void configOSPF(int acNetworks) {
     //! Declaración de varibles
+    string indice = "Configuración OSPF";
     string ospfNetworks[20][2];
 
     //! Entrada de datos
+    banner(indice);
     for (int i = 0; i < acNetworks; i++) {
         cout << "Red " << i + 1 << " (ej: 10.0.0.0 0.0.0.3)\n> ";
         cin >> ospfNetworks[i][0];
@@ -163,7 +188,7 @@ void configOSPF(int acNetworks) {
     }
 
     //! Salida de datos
-    banner();
+    banner(indice);
     cout << "- - - Configuración OSPF - - -" << endl << endl;
     cout << "router ospf 10" << endl;
     for (int i = 0; i < acNetworks; i++) {
@@ -172,14 +197,20 @@ void configOSPF(int acNetworks) {
     cout << "exit" << endl;
     cout << endl;
 
+    string next;
+
+    cout << "Continuar... (s/n)\n> "; cin >> next;
+    cout << endl;
+
 }
 
 void configRIP(int acNetworks) {
     //! Declaración de varibles
+    string indice = "Configuración RIP";
     string ripNetworks[20];
 
     //! Entrada de datos
-
+    banner(indice);
     for (int i = 0; i < acNetworks; i++) {
         cout << "Red " << i + 1 << " (ej: 10.0.0.0)\n> ";
         cin >> ripNetworks[i];
@@ -187,7 +218,7 @@ void configRIP(int acNetworks) {
     }
 
     //! Salida de datos
-    banner();
+    banner(indice);
     cout << "- - - Configuración RIP - - -" << endl << endl;
     cout << "router rip" << endl;
     cout << "version 2" << endl;
@@ -197,15 +228,22 @@ void configRIP(int acNetworks) {
     cout << "exit" << endl;
     cout << endl;
 
+    string next;
+
+    cout << "Continuar... (s/n)\n> "; cin >> next;
+    cout << endl;
+
 }
 
 void configTRUNK() {
     //! Declaración de varibles
+    string indice = "Configuración troncales";
     int vlanQty;
     string nativeVlan, vlan[20], opcSwitch;
     bool l3switch = false;
 
     //! Entrada de datos
+    banner(indice);
     cout << "¿Switch multicapa? (s/n)\n> "; cin >> opcSwitch;
     cout << endl;
 
@@ -225,7 +263,7 @@ void configTRUNK() {
     }
     
     //! Salida de datos
-    banner();
+    banner(indice);
     cout << "- - - Creación VLAN - - -" << endl << endl;
     for (int i = 0; i < vlanQty; i++) {
         cout << "vlan " << vlan[i] << endl;
@@ -258,11 +296,19 @@ void configTRUNK() {
 
     cout << endl << endl;
 
+    string next;
+
+    cout << "Continuar... (s/n)\n> "; cin >> next;
+    cout << endl;
+
 }
 
 void configSubInt() {
     int interfaceQty;
+    string indice = "Configuración subinterfaces rúter";
     string interfaz, native;
+
+    banner(indice);
     cout << "¿Interfaz?\n> "; cin >> interfaz;
     cout << endl;
     cout << "¿Cúantas subinterfaces quiere?\n> "; cin >> interfaceQty;
@@ -281,7 +327,7 @@ void configSubInt() {
 
     //! Salida de datos
 
-    banner();
+    banner(indice);
     cout << "- - - Configuración Subinterfaces - - -" << endl << endl;
     cout << "interface " << interfaz << endl;
     cout << "no shutdown" << endl;
@@ -299,17 +345,48 @@ void configSubInt() {
         cout << "exit" << endl;
     }
     cout << endl;
+
+    string next;
+
+    cout << "Continuar... (s/n)\n> "; cin >> next;
+    cout << endl;
 }
 
-int main() {
+void configRouting() {
+    int selProtocol, acNetworks;
+    string indice = "Configuración enrutamiento";
 
-    //! Declaración de variables global.
+    banner(indice);
+
+    cout << "¿Cuantas redes están directamente conectadas?\n> "; cin >> acNetworks;
+    cout << endl << "¿Qué protocolo de enrutamiento va a usar?" << endl << endl;
+    cout << "1. OSPF" << endl;
+    cout << "2. RIP" << endl;
+    cout << endl << "> "; cin >> selProtocol;
+
+    banner(indice);
+
+    switch (selProtocol) {
+        case 1: //- OSPF
+            configOSPF(acNetworks);
+        break;
+
+        case 2: //- RIP
+            configRIP(acNetworks);
+        break;
+
+        default:
+        break;
+    }
+}
+
+void soloMode () {
+    //! Declaración de variables.
+    string indice = "Modo solitario";
     int opcion;
     string temp;
 
-    int selProtocol, acNetworks;
-
-    banner();
+    banner(indice);
 
     cout << "Seleccione una opción." << endl << endl;
     cout << "1. SSH" << endl;
@@ -323,7 +400,7 @@ int main() {
 
     cin >> opcion;
 
-    banner();
+    banner(indice);
 
     switch (opcion) {
 
@@ -340,27 +417,7 @@ int main() {
         break;
         
         case 4: //- Enrutamiento
-            cout << "¿Cuantas redes están directamente conectadas?\n> "; cin >> acNetworks;
-            cout << endl << "¿Qué protocolo de enrutamiento va a usar?" << endl << endl;
-            cout << "1. OSPF" << endl;
-            cout << "2. RIP" << endl;
-            cout << endl << "> "; cin >> selProtocol;
-
-            banner();
-
-            switch (selProtocol) {
-                case 1: //- OSPF
-                    configOSPF(acNetworks);
-                break;
-
-                case 2: //- RIP
-                    configRIP(acNetworks);
-                break;
-
-                default:
-                break;
-            }
-            
+            configRouting();
         break;
 
         case 5: //- Troncales
@@ -373,17 +430,196 @@ int main() {
 
         case 7:
         system("clear");
-        return 0;
+        break;
+
+        default:
+        break;
+    }
+    
+    cout << "¿Desea probar otra configuración? (s/n)\n> "; cin >> temp;
+
+    if (temp == "s" || temp == "S")
+        soloMode();
+    else
+        system("clear");
+}
+
+void statusCheck(bool switchExists, bool routerExists, bool sshExists, bool switchFin, bool routerFin, bool sshFin) {
+
+    string next;
+    string indice = "Estado de la configuración.";
+
+    banner(indice);
+
+    cout << "[";
+    if (switchFin)
+        cout << "*";
+    else if (!switchExists)
+        cout << "-";
+    else {
+        cout << " ";
+    }
+    cout << "] Configuración switch." << endl;
+    cout << "[";
+    if (routerFin)
+        cout << "*";
+    else if (!routerExists)
+        cout << "-";
+    else {
+        cout << " ";
+    }
+    cout << "] Configuración rúter." << endl;
+    cout << "[";
+    if (sshFin)
+        cout << "*";
+    else if (!sshExists)
+        cout << "-";
+    else {
+        cout << " ";
+    }
+    cout << "] Configuración SSH." << endl;
+    cout << endl;
+
+    cout << "Continuar... (s/n)\n> "; cin >> next;
+    cout << endl;
+
+}
+
+void assistedMode() {
+    //! Declaración de variables.
+    string indice = "Modo asistido";
+
+    string opcion;
+
+    bool switchExists = false;
+    bool routerExists = false;
+    bool sshExists = false;
+
+    bool switchFin = false;
+    bool routerFin = false;
+    bool sshFin = false;
+
+    bool trunkAnswer = false;
+    bool dot1qAnswer = false;
+    bool routingAnswer = false;
+    bool dhcpAnswer = false;
+    bool hsrpAnswer = false;
+
+    banner(indice);
+
+    cout << "¿Desea configurar switchs? (s/n)\n> "; cin >> opcion;
+    if (opcion == "s" || opcion == "S"){
+        switchExists = true;
+        cout << "¿Va a requerir del uso de vlans y cables troncales? (s/n)\n> "; cin >> opcion;
+        cout << endl;
+        if (opcion == "s" || opcion == "S"){
+            trunkAnswer = true;
+        }
+    }
+    cout << "¿Desea configurar rúters? (s/n)\n> "; cin >> opcion;
+    if (opcion == "s" || opcion == "S"){
+        routerExists = true;
+        cout << "¿Necesita el protocolo dot1Q? (s/n)\n> "; cin >> opcion;
+        if (opcion == "s" || opcion == "S"){
+            dot1qAnswer = true;
+        }
+        cout << "¿Necesita enrutar? (s/n)\n> "; cin >> opcion;
+        if (opcion == "s" || opcion == "S"){
+            routingAnswer = true;
+        }
+        cout << "¿Necesita DHCP en router? (s/n)\n> "; cin >> opcion;
+        if (opcion == "s" || opcion == "S"){
+            dhcpAnswer = true;
+        }
+        cout << "¿Va a utilizar HSRPv4? (s/n)\n> "; cin >> opcion;
+        cout << endl;
+        if (opcion == "s" || opcion == "S"){
+            hsrpAnswer = true;
+        }
+    }
+    cout << "¿Necesita SSH? (s/n)\n> "; cin >> opcion;
+    if (opcion == "s" || opcion == "S"){
+        sshExists = true;
+    }
+
+    statusCheck(switchExists, routerExists, sshExists, switchFin, routerFin, sshFin);
+
+    //! Config Switch
+    if (switchExists) {
+        if (!switchFin) {
+            if (trunkAnswer == true) {
+                configTRUNK();
+            }
+            switchFin = true;
+            statusCheck(switchExists, routerExists, sshExists, switchFin, routerFin, sshFin);
+        }
+    }
+
+    if (routerExists) {
+        if (!routerFin) {
+            if (dot1qAnswer == true) {
+                configSubInt();
+            }
+            banner(indice);
+            if (dhcpAnswer == true) {
+                configDHCP();
+            }
+            if (hsrpAnswer == true) {
+                configHSRP();
+            }
+            if (routingAnswer == true) {
+                configRouting();
+            }
+            routerFin = true;
+            statusCheck(switchExists, routerExists, sshExists, switchFin, routerFin, sshFin);
+        }
+    }
+
+    if (sshExists) {
+        if (!sshFin) {
+            configSSH();
+            sshFin = true;
+            statusCheck(switchExists, routerExists, sshExists, switchFin, routerFin, sshFin);
+        }
+    }
+
+}
+
+int main() {
+
+    string indice = "";
+    string tempOpc;
+    int opcion;
+
+    banner(indice);
+
+    cout << "Seleccione una opción." << endl << endl;
+    cout << "1. Modo asistido." << endl;
+    cout << "2. Modo solitario." << endl;
+    cout << endl << "3. Salir" << endl;
+    cout << endl << "> ";
+    cin >> opcion;
+
+    switch (opcion) {
+        case 1:
+            assistedMode();
+            break;
+
+        case 2:
+            soloMode();
+            break;
 
         default:
         break;
     }
 
-    cout << "¿Desea continuar? (s/n)\n> "; cin >> temp;
+    banner("Cerrar el programa.");
+    cout << "¿Salir? (s/n)\n> "; cin >> tempOpc;
 
-    if (temp == "s" or temp == "S")
+    if (tempOpc == "n" || tempOpc == "N")
         main();
     else
         system("clear");
         return 0;
+
 }
