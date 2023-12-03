@@ -15,7 +15,7 @@ void banner(string indice) {
 
 void configSSH() {
     //! Declaración de varibles
-    string indice = "Configuración SSH";
+    string indice = "Configuración SSH.";
     string hostname, domainName, cifrate, userName, secret, optDef;
     bool sshVer2 = false; 
     int optSsh;
@@ -34,17 +34,17 @@ void configSSH() {
 
     if (optDef != "s") {
         banner(indice);
-        cout << "Versión SSH (1/2)\n> "; cin >> optSsh;
+        cout << "Versión SSH (1/2).\n> "; cin >> optSsh;
 
         if (optSsh == 2) {
             sshVer2 = true;
         }
 
-        cout << "Hostname\n> "; cin >> hostname;
-        cout << "Domain-Name\n> "; cin >> domainName;
-        cout << "Cifrado (360-2048)\n> "; cin >> cifrate;
-        cout << "Nombre de usuario\n> "; cin >> userName;
-        cout << "Contraseña\n> "; cin >> secret;
+        cout << "Hostname.\n> "; cin >> hostname;
+        cout << "Domain-Name.\n> "; cin >> domainName;
+        cout << "Cifrado (360-2048).\n> "; cin >> cifrate;
+        cout << "Nombre de usuario.\n> "; cin >> userName;
+        cout << "Contraseña.\n> "; cin >> secret;
     }
     
     else {
@@ -77,7 +77,7 @@ void configSSH() {
 
 void configDHCP() {
     //! Declaración de varibles
-    string indice = "Configuración DHCP";
+    string indice = "Configuración DHCP.";
     int poolQty;
     string pools[20], networkID[20], dns, domainNameDHCP;
 
@@ -87,14 +87,14 @@ void configDHCP() {
     cout << endl;
 
     for (int i = 0; i < poolQty; i++) {
-        cout << "ID Pool " << i + 1 << "\n> "; cin >> pools[i];
-        cout << "ID de red (ej: 192.168.0)\n> "; cin >> networkID[i];
+        cout << "ID Pool " << i + 1 << ".\n> "; cin >> pools[i];
+        cout << "ID de red (ej: 192.168.0).\n> "; cin >> networkID[i];
         cout << endl;
     }
 
-    cout << "Servidor DNS (no = 0)\n> "; cin >> dns;
+    cout << "Servidor DNS (no = 0).\n> "; cin >> dns;
     cout << endl;
-    cout << "Domain name (no = 0)\n> "; cin >> domainNameDHCP;
+    cout << "Domain name (no = 0).\n> "; cin >> domainNameDHCP;
 
     //! Salida de datos
     banner(indice);
@@ -125,7 +125,7 @@ void configDHCP() {
 
 void configHSRP() {
     //! Declaración de varibles
-    string indice = "Configuración HSRP";
+    string indice = "Configuración HSRP.";
     int groupQty;
     string HSRP[10][3]; //! INTERFACES | GRUPOS | IDRED
 
@@ -134,9 +134,9 @@ void configHSRP() {
     cout << "¿Cúantos grupos necesita?\n> "; cin >> groupQty;
 
     for (int i = 0; i < groupQty; i++) {
-        cout << "\nGrupo " << i + 1 << endl;
-        cout << "ID grupo\n> "; cin >> HSRP[i][1];
-        cout << "ID red (ej: 192.168.0)\n> "; cin >> HSRP[i][2];
+        cout << "\nGrupo " << i + 1 << "." << endl;
+        cout << "ID grupo.\n> "; cin >> HSRP[i][1];
+        cout << "ID red (ej: 192.168.0).\n> "; cin >> HSRP[i][2];
     }
     
     //! Salida de datos
@@ -175,13 +175,13 @@ void configHSRP() {
 
 void configOSPF(int acNetworks) {
     //! Declaración de varibles
-    string indice = "Configuración OSPF";
+    string indice = "Configuración OSPF.";
     string ospfNetworks[20][2];
 
     //! Entrada de datos
     banner(indice);
     for (int i = 0; i < acNetworks; i++) {
-        cout << "Red " << i + 1 << " (ej: 10.0.0.0 0.0.0.3)\n> ";
+        cout << "Red " << i + 1 << " (ej: 10.0.0.0 0.0.0.3).\n> ";
         cin >> ospfNetworks[i][0];
         cin >> ospfNetworks[i][1];
         cout << endl;
@@ -206,13 +206,13 @@ void configOSPF(int acNetworks) {
 
 void configRIP(int acNetworks) {
     //! Declaración de varibles
-    string indice = "Configuración RIP";
+    string indice = "Configuración RIP.";
     string ripNetworks[20];
 
     //! Entrada de datos
     banner(indice);
     for (int i = 0; i < acNetworks; i++) {
-        cout << "Red " << i + 1 << " (ej: 10.0.0.0)\n> ";
+        cout << "Red " << i + 1 << " (ej: 10.0.0.0).\n> ";
         cin >> ripNetworks[i];
         cout << endl;
     }
@@ -237,7 +237,7 @@ void configRIP(int acNetworks) {
 
 void configTRUNK() {
     //! Declaración de varibles
-    string indice = "Configuración troncales";
+    string indice = "Configuración troncales.";
     int vlanQty;
     string nativeVlan, vlan[20], opcSwitch;
     bool l3switch = false;
@@ -305,7 +305,7 @@ void configTRUNK() {
 
 void configSubInt() {
     int interfaceQty;
-    string indice = "Configuración subinterfaces rúter";
+    string indice = "Configuración subinterfaces rúter.";
     string interfaz, native;
 
     banner(indice);
@@ -354,14 +354,14 @@ void configSubInt() {
 
 void configRouting() {
     int selProtocol, acNetworks;
-    string indice = "Configuración enrutamiento";
+    string indice = "Configuración enrutamiento.";
 
     banner(indice);
 
     cout << "¿Cuantas redes están directamente conectadas?\n> "; cin >> acNetworks;
     cout << endl << "¿Qué protocolo de enrutamiento va a usar?" << endl << endl;
-    cout << "1. OSPF" << endl;
-    cout << "2. RIP" << endl;
+    cout << "1. OSPF." << endl;
+    cout << "2. RIP." << endl;
     cout << endl << "> "; cin >> selProtocol;
 
     banner(indice);
@@ -382,20 +382,20 @@ void configRouting() {
 
 void soloMode () {
     //! Declaración de variables.
-    string indice = "Modo solitario";
+    string indice = "Modo solitario.";
     int opcion;
     string temp;
 
     banner(indice);
 
     cout << "Seleccione una opción." << endl << endl;
-    cout << "1. SSH" << endl;
-    cout << "2. DHCPv4" << endl;
-    cout << "3. HSRP" << endl;
-    cout << "4. Enrutamiento" << endl;
-    cout << "5. Configuración troncales" << endl;
-    cout << "6. Subinterfaces rúter" << endl;
-    cout << endl << "7. Salir" << endl;
+    cout << "1. SSH." << endl;
+    cout << "2. DHCPv4." << endl;
+    cout << "3. HSRP." << endl;
+    cout << "4. Enrutamiento." << endl;
+    cout << "5. Configuración troncales." << endl;
+    cout << "6. Subinterfaces rúter." << endl;
+    cout << endl << "7. Salir." << endl;
     cout << endl << "> ";
 
     cin >> opcion;
@@ -487,7 +487,7 @@ void statusCheck(bool switchExists, bool routerExists, bool sshExists, bool swit
 
 void assistedMode() {
     //! Declaración de variables.
-    string indice = "Modo asistido";
+    string indice = "Modo asistido.";
 
     string opcion;
 
@@ -596,7 +596,7 @@ int main() {
     cout << "Seleccione una opción." << endl << endl;
     cout << "1. Modo asistido." << endl;
     cout << "2. Modo solitario." << endl;
-    cout << endl << "3. Salir" << endl;
+    cout << endl << "3. Salir." << endl;
     cout << endl << "> ";
     cin >> opcion;
 
